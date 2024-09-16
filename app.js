@@ -93,7 +93,7 @@ app.get('/products', async (req, res) => {
       console.log('Database query failed:', err);
       console.log(err);
       console.log(process.env.PG_HOST);
-      res.status(500).send('Server Error: ' + process.env.PG_HOST );
+      res.status(500).send('Server Error: ' + err );
      //await client.end();
   }
 });

@@ -1,10 +1,11 @@
 const express = require("express");
-const { Pool } = require("pg");
+const { Pool, Client } = require("pg");
 
 // Load environment variables from .env file
 require('dotenv').config();
 
 // Create a new pool instance
+/*
 const pool = new Pool({
   user: process.env.PG_USER,
   host: process.env.PG_HOST,
@@ -16,13 +17,13 @@ const pool = new Pool({
   acquireTimeoutMillis: 300000, // Connection will be closed after 30 seconds of inactivity
   ssl: {rejectUnauthorized: false}
 
-});
+});*/
 
 //client.connect();
 
 
 const app = express();
-const port = 3001;
+const port = process.env.PG_PORT || 3001;
 // Querying the database using the pool
 
 
@@ -83,6 +84,7 @@ const html = `
   </body>
 </html>
 `
+/*
 app.get('/products', async (req, res) => {
   try {
     console.log(process.env.PG_HOST);
@@ -97,6 +99,37 @@ app.get('/products', async (req, res) => {
       res.status(500).send('Server Error: ' + err );
      //await client.end();
   }
+});
+*/
+
+app.get('/products', async (req, res) => {
+try {
+  // trimmed code here 
+  
+          const client = new Client({
+            user: process.env.PG_USER,
+            host: process.env.PG_HOST,
+            database: process.env.PG_DATABASE,
+            password: process.env.PG_PASSWORD,
+            port: process.env.PG_PORT,
+            //max: 20,   // Maximum number of connections in the pool
+            idleTimeoutMillis: 0, 
+            ssl: true
+          });
+  
+          await client.connect();
+          try {
+            const result = await client.query("SELECT * FROM products");
+            return res.json(result.rows);
+          } finally {
+            await client.end();
+          }
+  
+      } catch (err) {
+          console.error('Problem executing export query:');
+          console.error(err);
+          throw err;
+      }
 });
 
 const samplePage = `<html><div>Hello World</div></html>`;

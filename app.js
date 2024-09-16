@@ -13,11 +13,14 @@ const pool = new Pool({
   port: process.env.PG_PORT,
   max: 20,   // Maximum number of connections in the pool
   idleTimeoutMillis: 30000,  // Connection will be closed after 30 seconds of inactivity
+  ssl: true
 });
+
+//client.connect();
+console.log(process.env.PG_HOST);
 
 const app = express();
 const port = process.env.PORT || 3001;
-
 // Querying the database using the pool
 
 
@@ -80,12 +83,17 @@ const html = `
 `
 app.get('/products', async (req, res) => {
   try {
+      
+
       const result = await pool.query('SELECT * FROM products');
       res.json(result.rows);
+     //await client.end();
   } catch (err) {
       console.log('Database query failed:', err);
-
+      console.log(err);
+      
       res.status(500).send('Server Error');
+     //await client.end();
   }
 });
 

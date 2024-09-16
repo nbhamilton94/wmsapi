@@ -1,5 +1,5 @@
 const express = require("express");
-const { Pool } = require("pg");
+const { Pool } = require("pg").native;
 
 // Load environment variables from .env file
 require('dotenv').config();

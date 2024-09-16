@@ -14,7 +14,8 @@ const pool = new Pool({
   max: 20,   // Maximum number of connections in the pool
   idleTimeoutMillis: 300000, 
   acquireTimeoutMillis: 300000, // Connection will be closed after 30 seconds of inactivity
-  ssl: true
+  ssl: {rejectUnauthorized: false}
+
 });
 
 //client.connect();

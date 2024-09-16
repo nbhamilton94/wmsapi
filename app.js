@@ -19,15 +19,7 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 // Querying the database using the pool
-app.get('/products', async (req, res) => {
-  try {
-      const result = await pool.query('SELECT * FROM products');
-      res.json(result.rows);
-  } catch (err) {
-      console.error(err.message);
-      res.status(500).send('Server Error');
-  }
-});
+
 
 app.get("/", (req, res) => res.type('html').send(html));
 
@@ -86,3 +78,12 @@ const html = `
   </body>
 </html>
 `
+app.get('/products', async (req, res) => {
+  try {
+      const result = await pool.query('SELECT * FROM products');
+      res.json(result.rows);
+  } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+  }
+});

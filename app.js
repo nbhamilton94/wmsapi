@@ -1,5 +1,5 @@
 const express = require("express");
-const { Pool } = require("pg").native;
+const { Pool } = require("pg");
 
 // Load environment variables from .env file
 require('dotenv').config();
@@ -17,7 +17,7 @@ const pool = new Pool({
 });
 
 //client.connect();
-console.log(process.env.PG_HOST);
+
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -83,7 +83,7 @@ const html = `
 `
 app.get('/products', async (req, res) => {
   try {
-      
+    console.log(process.env.PG_HOST);
 
       const result = await pool.query('SELECT * FROM products');
       res.json(result.rows);
@@ -91,8 +91,8 @@ app.get('/products', async (req, res) => {
   } catch (err) {
       console.log('Database query failed:', err);
       console.log(err);
-      
-      res.status(500).send('Server Error');
+      console.log(process.env.PG_HOST);
+      res.status(500).send('Server Error: ' + process.env.PG_HOST );
      //await client.end();
   }
 });

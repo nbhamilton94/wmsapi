@@ -1,5 +1,5 @@
 const express = require("express");
-const { Pool, Client } = require("pg");
+const { Pool, Client } = require("pg").native;
 
 // Load environment variables from .env file
 require('dotenv').config();
@@ -114,8 +114,7 @@ try {
             port: process.env.PG_PORT,
             connectionString: process.env.PG_CONNECTIONSTRING,
             max: 1,   // Maximum number of connections in the pool
-            connectionTimeoutMillis: 300000, 
-            ssl: true
+            connectionTimeoutMillis: 300000
           });
   
           await client.connect();

@@ -1,6 +1,33 @@
 const express = require("express");
+const { Pool } = require("pg");
+
+// Load environment variables from .env file
+require('dotenv').config();
+
+// Create a new pool instance
+const pool = new Pool({
+  user: process.env.PG_USER,
+  host: process.env.PG_HOST,
+  database: process.env.PG_DATABASE,
+  password: process.env.PG_PASSWORD,
+  port: process.env.PG_PORT,
+  max: 20,   // Maximum number of connections in the pool
+  idleTimeoutMillis: 30000,  // Connection will be closed after 30 seconds of inactivity
+});
+
 const app = express();
 const port = process.env.PORT || 3001;
+
+// Querying the database using the pool
+app.get('/products', async (req, res) => {
+  try {
+      const result = await pool.query('SELECT * FROM products');
+      res.json(result.rows);
+  } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+  }
+});
 
 app.get("/", (req, res) => res.type('html').send(html));
 

@@ -83,7 +83,12 @@ app.get('/products', async (req, res) => {
       const result = await pool.query('SELECT * FROM products');
       res.json(result.rows);
   } catch (err) {
-      console.error(err.message);
+      console.log('Database query failed:', err);
+
       res.status(500).send('Server Error');
   }
 });
+
+const samplePage = `<html><div>Hello World</div></html>`;
+app.get('/home', (req,res) => res.type('html').send(samplePage) );
+

@@ -112,7 +112,7 @@ try {
             database: process.env.PG_DATABASE,
             password: process.env.PG_PASSWORD,
             port: process.env.PG_PORT,
-            //max: 20,   // Maximum number of connections in the pool
+            max: 1,   // Maximum number of connections in the pool
             idleTimeoutMillis: 0, 
             ssl: true
           });

@@ -12,7 +12,8 @@ const pool = new Pool({
   password: process.env.PG_PASSWORD,
   port: process.env.PG_PORT,
   max: 20,   // Maximum number of connections in the pool
-  idleTimeoutMillis: 30000,  // Connection will be closed after 30 seconds of inactivity
+  idleTimeoutMillis: 300000, 
+  acquireTimeoutMillis: 300000, // Connection will be closed after 30 seconds of inactivity
   ssl: true
 });
 

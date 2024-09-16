@@ -22,7 +22,7 @@ const pool = new Pool({
 
 
 const app = express();
-const port = process.env.PORT || 3001;
+const port = 3001;
 // Querying the database using the pool
 
 

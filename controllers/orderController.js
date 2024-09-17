@@ -17,6 +17,6 @@ exports.createOrders = async (req, res) => {
         const newOrder = await orderModel.createOrders(orderData); //Use the model to create a new order
         res.status(201).json({message: 'Order created succesfully', order: newOrder });
     } catch(err) {
-        res.status(500).json({error: 'Error creating user'});
+        res.status(500).json({error: 'Error creating order'});
     }
 };

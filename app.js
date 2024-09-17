@@ -1,9 +1,14 @@
 const express = require("express");
 const app = express();
 const orderRoutes = require('./routes/orderRoutes');
+const productRoutes = require('./routes/productRoutes');
+const shipmentRoutes = require('./routes/shipmentRoutes');
+
 app.use(express.json()); // This allows the app to handle JSON data in POST/PUT requests
 
 app.use('/api', orderRoutes);
+app.use('/api', productRoutes);
+app.use('/api', shipmentRoutes);
 
 const port = process.env.PG_PORT || 3001;
 

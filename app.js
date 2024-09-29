@@ -68,4 +68,4 @@ const html = `
 const samplePage = `<html><div>Hello World</div></html>`;
 app.get('/home', (req,res) => res.type('html').send(samplePage) );
 
-module.exports = app;
+module.exports = { app, port };

@@ -17,7 +17,7 @@ This will be the first of 2+ iterations of this concept. In this particular iter
 
 Product has a lookup relationship with Order where Order is the child object..
 
-Shipment has a master-detail relationship with Order where Shipment is the child (detail) object.
+Shipment has a lookup relationship with Order where Shipment is the child object.
 
 <a href="https://ibb.co/w0cQx0k"><img src="https://i.ibb.co/4m1S5mq/Project-Diagram.jpg" alt="Project-Diagram" border="0" /></a>
 

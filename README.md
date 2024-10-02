@@ -23,6 +23,13 @@ Shipment has a lookup relationship with Order where Shipment is the child object
 
 The app in this repo is deployed at [https://express.onrender.com](https://express.onrender.com).
 
+## Goals
+We want to establish a two way integration between our external database and Salesforce such that
+* Products created in Salesforce are pushed to the external DB
+* Orders created in Salesforce are pushed to the external DB
+* Shipments created in Salesforce are pushed to the external DB
+* The external DB is synced with salesforce periodically 
+
 ## Deployment
 
 See https://render.com/docs/deploy-node-express-app or follow the steps below:

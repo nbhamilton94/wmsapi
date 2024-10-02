@@ -18,7 +18,7 @@ This will be the first of 2+ iterations of this concept. In this particular iter
 Product has a lookup relationship with Order where Order is the child object..
 
 Shipment has a master-detail relationship with Order where Shipment is the child (detail) object.
-
+![diagram](https://ibb.co/w0cQx0k)
 
 The app in this repo is deployed at [https://express.onrender.com](https://express.onrender.com).
 

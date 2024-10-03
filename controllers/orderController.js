@@ -11,6 +11,18 @@ exports.getOrders = async (req, res) => {
     }
 };
 
+exports.getOrderById = async (req, res) => {
+    try {
+        const orderId = req.params.orderId;
+        console.log(orderId);
+        const order = await orderModel.getOrderById(orderId); // Fetch orders using the model given an id
+
+        res.status(200).json(order); // Send the order data as a JSON response
+    } catch (err) {
+        res.status(500).json({error: 'Error fetching order'});
+    }
+}
+
 // Controller function to handle POST /orders (create a new order)
 exports.createOrders = async (req, res) => {
     try {

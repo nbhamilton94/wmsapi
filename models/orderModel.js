@@ -6,6 +6,12 @@ exports.getAllOrders = async () => {
     return result.rows; // Return all orders records
 };
 
+exports.getOrderById = async (orderId) => {
+    const result = await pool.query('SELECT * FROM orders WHERE id = ' + orderId);
+
+    return result.rows[0]; // Return the fetched order.
+}
+
 // Create orders in the database.
 exports.createOrders = async (orderData) => {
     const { quantity_ordered, status, product_id } = orderData;
